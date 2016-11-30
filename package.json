@@ -1,0 +1,23 @@
+{
+  "name": "remove-id3v1",
+  "version": "1.0.0",
+  "description": "Remove ID3v1 tags from MP3 files.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node spec/support/jasmine_runner.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alchen/remove-id3v1.git"
+  },
+  "author": "Alexander Chen",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/alchen/remove-id3v1/issues"
+  },
+  "homepage": "https://github.com/alchen/remove-id3v1#readme",
+  "devDependencies": {
+    "jasmine": "^2.5.2",
+    "jasmine-spec-reporter": "^2.7.0"
+  }
+}
