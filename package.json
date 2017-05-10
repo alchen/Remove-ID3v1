@@ -11,7 +11,7 @@
     "url": "git+https://github.com/alchen/remove-id3v1.git"
   },
   "author": "Alexander Chen",
-  "license": "GPL-3.0",
+  "license": "AGPL-3.0",
   "bugs": {
     "url": "https://github.com/alchen/remove-id3v1/issues"
   },
