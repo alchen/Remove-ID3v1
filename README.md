@@ -7,7 +7,7 @@ This library provides a mean to strip a file of its ID3v1 tag, when present.
 There are two useful functions:
 
 ```
-const Remover = require('../src/remove-id3v1');
+const Remover = require('remove-id3v1');
 const buffer = fs.readFileSync('sample.mp3');
 
 // Both of the functions take either a Buffer or an ArrayBuffer as the argument
