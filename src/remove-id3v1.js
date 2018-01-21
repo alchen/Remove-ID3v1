@@ -1,40 +1,42 @@
+const tagLength = 128;
+
 class Remover {
-  _removeTag() {
-    const tagLength = 128;
-    let bufferLength = this.arrayBuffer.byteLength;
+  static getArrayBuffer(input) {
+    if (input instanceof Buffer) {
+      return input.buffer;
+    } else if (input instanceof ArrayBuffer) {
+      return input;
+    }
+
+    throw new Error('First argument should be an instance of ArrayBuffer or Buffer');
+  }
+
+  static hasTag(input) {
+    const buffer = this.getArrayBuffer(input);
+    const bufferLength = buffer.byteLength;
 
     if (bufferLength < tagLength) {
       return false;
     }
 
-    let tagSpace = new Uint8Array(this.arrayBuffer, bufferLength - tagLength);
+    const tagSpace = new Uint8Array(buffer, bufferLength - tagLength);
 
     if (!(tagSpace[0] === 0x54 && tagSpace[1] === 0x41 && tagSpace[2] === 0x47)) {
-      return;
+      return false;
     }
 
-    this.arrayBuffer = this.arrayBuffer.slice(0, bufferLength - tagLength);
+    return true;
   }
 
-  constructor(buffer) {
-    if (!buffer || typeof buffer !== 'object' || !('byteLength' in buffer)) {
-      throw new Error('First argument should be an instance of ArrayBuffer or Buffer');
+  static removeTag(input) {
+    const buffer = this.getArrayBuffer(input);
+    const bufferLength = buffer.byteLength;
+
+    if (!this.hasTag(buffer)) {
+      return buffer.slice();
     }
 
-    if (buffer instanceof Buffer) {
-      this.arrayBuffer = buffer.buffer;
-    } else {
-      this.arrayBuffer = buffer;
-    }
-    this._removeTag();
-  }
-
-  getBlob() {
-    return new Blob([this.arrayBuffer], {type: 'audio/mpeg'});
-  }
-
-  getURL() {
-    return URL.createObjectURL(this.getBlob());
+    return buffer.slice(0, bufferLength - tagLength);
   }
 }
 
