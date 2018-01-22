@@ -1,4 +1,4 @@
-const Remover = require('../src/remove-id3v1');
+const Remover = require('../lib');
 const fs = require('fs');
 const path = require('path');
 
